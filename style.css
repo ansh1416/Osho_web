@@ -138,7 +138,7 @@ html {
 /* ================= HERO ================= */
 
 .hero {
-    padding: 150px 20px;
+    padding: 180px 20px 150px;
     background: linear-gradient(to bottom, #111, #000);
 }
 
@@ -814,11 +814,6 @@ html {
 }
 
 @media (max-width: 768px) {
-
-    .menu-toggle {
-        display: flex;
-    }
-
 
     .menu-toggle {
         display: flex;
