@@ -22,7 +22,8 @@ html {
     width: 100%;
     position: fixed;
     top: 0;
-    z-index: 1000;
+    left: 0;
+    z-index: 2000; /* very important */
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(198,168,91,0.25);
@@ -39,6 +40,8 @@ html {
 
 /* Logo */
 .logo {
+    position: relative;
+    z-index: 2100;
     font-family: 'Playfair Display', serif;
     font-size: 26px;
     letter-spacing: 4px;
@@ -48,6 +51,8 @@ html {
 /* ================= NAV LINKS ================= */
 
 .nav-links {
+    position: relative;  /* not absolute */
+    z-index: 2000;
     list-style: none;
     display: flex;
     gap: 40px;
@@ -792,33 +797,65 @@ html {
 
 /* ================= NAV RESPONSIVE ================= */
 
-@media (max-width: 992px) {
+/* ================= MOBILE NAV ================= */
 
-    .nav-container {
-        flex-direction: column;
-        gap: 20px;
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 24px;
+    height: 2px;
+    background: #c6a85b;
+    transition: 0.3s ease;
+}
+
+@media (max-width: 768px) {
+
+    .menu-toggle {
+        display: flex;
+    }
+
+
+    .menu-toggle {
+        display: flex;
+        z-index: 1100;
+    }
+
+    .logo {
+        z-index: 1100;
+        position: relative;
     }
 
     .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
+        position: fixed;
+        top: 80px;   /* 👈 BELOW navbar */
+        right: -100%;
+        height: calc(100vh - 80px);
+        width: 260px;
+        background: #0f0f0f;
+        flex-direction: column;
+        padding-top: 40px;
+        gap: 25px;
+        align-items: center;
+        transition: 0.4s ease;
+        border-left: 1px solid rgba(198,168,91,0.2);
+        z-index: 1000;
     }
 
-    .dropdown-menu {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        border: none;
-        background: transparent;
-        padding: 5px 0;
-    }
-
-    .dropdown-menu a {
-        padding: 6px 10px;
+    .nav-links.active {
+        right: 0;
     }
 }
+
+    /* hide dropdown hover behavior */
+    .dropdown:hover .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+    }   
 
 @media (max-width: 768px) {
     .cinematic h2 {
@@ -886,3 +923,4 @@ html {
         transform: none;
     }
 }
+
